@@ -12,11 +12,15 @@ class Citation:
     def print_it(self):
         print(unidecode(self.quote + "|" + self.location[self.location.index("|") + 2:] + "|" + self.note))
 
+    def to_string(self):
+        return unidecode(self.quote + "|" + self.location[self.location.index("|") + 2:] + "|" + self.note)
+
 
 parser = argparse.ArgumentParser("kindle_scrape")
 parser.add_argument("input_file", help="HTML file to parse")
 args = parser.parse_args()
 input_file = args.input_file
+output_file = input_file.replace('.html', '-extracted.txt')
 
 with open(input_file, "r") as f:
     page = f.read()
@@ -55,8 +59,7 @@ while cont:
     start = location
 
 
-for citation in citation_list:
-    citation.print_it()
-
-
-
+with open(output_file, "x") as f:
+    for citation in citation_list:
+        f.write(citation.to_string())
+        f.write('\n')
