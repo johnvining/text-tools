@@ -1,6 +1,7 @@
 from lxml import html
 from bs4 import BeautifulSoup, Comment
 from unidecode import unidecode
+import argparse
 
 class Citation:
     def __init__(self):
@@ -12,8 +13,12 @@ class Citation:
         print(unidecode(self.quote + "|" + self.location[self.location.index("|") + 2:] + "|" + self.note))
 
 
-# python3 main.py
-with open(r'<filepath>', "r") as f:
+parser = argparse.ArgumentParser("kindle_scrape")
+parser.add_argument("input_file", help="HTML file to parse")
+args = parser.parse_args()
+input_file = args.input_file
+
+with open(input_file, "r") as f:
     page = f.read()
 
 soup = BeautifulSoup(page, "lxml")
