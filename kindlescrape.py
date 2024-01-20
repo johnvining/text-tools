@@ -2,8 +2,6 @@ from lxml import html
 from bs4 import BeautifulSoup, Comment
 from unidecode import unidecode
 
-
-
 class Citation:
     def __init__(self):
         self.quote = ""
