@@ -29,7 +29,7 @@ soup = BeautifulSoup(page, "lxml")
 
 # Start looking for notes after this comment
 start = None
-for comment in soup.findAll(text=lambda text: isinstance(text, Comment)):
+for comment in soup.findAll(string=lambda text: isinstance(text, Comment)):
     if comment in [u' Star, if necessary ']:
         start = comment
         break
