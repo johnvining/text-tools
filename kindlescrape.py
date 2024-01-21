@@ -58,8 +58,9 @@ while cont:
 
     start = location
 
-
 with open(output_file, "x") as f:
     for citation in citation_list:
         f.write(citation.to_string())
         f.write('\n')
+
+print(str(len(citation_list)) + " lines printed")
