@@ -8,16 +8,15 @@ class Citation:
         self.quote = ""
         self.location = ""
         self.note = ""
-
-    def print_it(self):
-        print(unidecode(self.quote + "|" + self.location[self.location.index("|") + 2:] + "|" + self.note))
+        self.work = ""
 
     def to_string(self):
-        return unidecode(self.quote + "|" + self.location[self.location.index("|") + 2:] + "|" + self.note)
+        return unidecode(self.quote + "|" + self.location[self.location.index("|") + 2:] + "|" + self.note + "|" + self.work)
 
 
 parser = argparse.ArgumentParser("kindle_scrape")
 parser.add_argument("input_file", help="HTML file to parse")
+parser.add_argument("work_name", help="Name of the book")
 args = parser.parse_args()
 input_file = args.input_file
 output_file = input_file.replace('.html', '-extracted.txt')
@@ -46,6 +45,7 @@ while cont:
         break
 
     citation.location = location.contents[0]
+    citation.work = args.work_name
 
     span = location.find_next(id="highlight")
     citation.quote=span.contents[0]
