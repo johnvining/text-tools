@@ -1,6 +1,5 @@
 from lxml import html
 from bs4 import BeautifulSoup, Comment
-from unidecode import unidecode
 import argparse
 import csv
 
